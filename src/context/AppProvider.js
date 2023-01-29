@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import AppContext from './AppContext';
 
 function AppProvider({ children }) {
-  const [planetSearch, setPlanetSearch] = useState('planets');
+  const [planetSearch, setPlanetSearch] = useState('');
   const [planetData, setPlanetData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState(null);

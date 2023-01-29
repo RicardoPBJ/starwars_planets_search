@@ -5,7 +5,7 @@ export default function Table() {
   const { planetData, isLoading, makeFetch, planetSearch } = useContext(AppContext);
 
   useEffect(() => {
-    makeFetch(`https://swapi.dev/api/${planetSearch}`);
+    makeFetch('https://swapi.dev/api/planets');
   }, []);
 
   console.log(planetData);
@@ -32,11 +32,13 @@ export default function Table() {
             </thead>
             <tbody>
               {
-                Object.values(planetData).map((planet, index) => (
-                  <tr key={ index }>
-                    {Object.values(planet)
-                      .map((item, ind) => <td key={ ind }>{item}</td>)}
-                  </tr>))
+                Object.values(planetData)
+                  .filter(({ name }) => name.includes(planetSearch))
+                  .map((planet, index) => (
+                    <tr key={ index }>
+                      {Object.values(planet)
+                        .map((item, ind) => <td key={ ind }>{item}</td>)}
+                    </tr>))
               }
             </tbody>
           </table>

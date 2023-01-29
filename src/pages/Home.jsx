@@ -16,7 +16,7 @@ export default function Home() {
         name="text"
         labelName="Pesquisar Planetas"
         type="text"
-        testId="search-input"
+        testId="name-filter"
         handleInput={ handleChange }
         placeholder="Search"
       />
