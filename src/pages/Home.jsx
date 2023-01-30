@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Table from '../components/Table';
 import Input from '../components/Input';
 import AppContext from '../context/AppContext';
+import NumberFilter from '../components/NumberFilter';
 
 export default function Home() {
   const { setPlanetSearch } = useContext(AppContext);
@@ -20,6 +21,7 @@ export default function Home() {
         handleInput={ handleChange }
         placeholder="Search"
       />
+      <NumberFilter />
       <Table />
     </>
   );

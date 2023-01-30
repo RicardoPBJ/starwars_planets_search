@@ -8,6 +8,7 @@ function Input({
   testId,
   handleInput,
   placeholder,
+  value,
 }) {
   return (
     <label htmlFor={ name }>
@@ -16,6 +17,7 @@ function Input({
         type={ type }
         name={ name }
         id={ id }
+        value={ value }
         data-testid={ testId }
         onChange={ handleInput }
         placeholder={ placeholder }
@@ -25,6 +27,7 @@ function Input({
 }
 
 Input.propTypes = {
+  value: PropTypes.string,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   id: PropTypes.string,
@@ -35,6 +38,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  value: '',
   id: '',
   placeholder: '',
   labelName: '',

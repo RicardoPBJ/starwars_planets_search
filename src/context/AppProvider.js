@@ -3,6 +3,8 @@ import { useMemo, useState } from 'react';
 import AppContext from './AppContext';
 
 function AppProvider({ children }) {
+  const [numberFilter, setNumberFilter] = useState(false);
+  const [planetFiltered, setPlanetFiltered] = useState([]);
   const [planetSearch, setPlanetSearch] = useState('');
   const [planetData, setPlanetData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +27,10 @@ function AppProvider({ children }) {
   };
 
   const values = useMemo(() => ({
+    planetFiltered,
+    setPlanetFiltered,
+    numberFilter,
+    setNumberFilter,
     makeFetch,
     setPlanetData,
     isLoading,
@@ -32,7 +38,7 @@ function AppProvider({ children }) {
     planetSearch,
     setPlanetSearch,
     planetData,
-  }), [planetSearch, planetData, isLoading, errors]);
+  }), [planetSearch, planetData, isLoading, errors, numberFilter, planetFiltered]);
 
   return (
     <AppContext.Provider value={ values }>

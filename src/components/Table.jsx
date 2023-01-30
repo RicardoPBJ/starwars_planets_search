@@ -2,12 +2,19 @@ import React, { useContext, useEffect } from 'react';
 import AppContext from '../context/AppContext';
 
 export default function Table() {
-  const { planetData, isLoading, makeFetch, planetSearch } = useContext(AppContext);
+  const {
+    planetData,
+    isLoading,
+    makeFetch,
+    planetSearch,
+    planetFiltered,
+    numberFilter,
+  } = useContext(AppContext);
 
   useEffect(() => {
     makeFetch('https://swapi.dev/api/planets');
   }, []);
-
+  console.log(planetFiltered);
   console.log(planetData);
 
   return (
@@ -31,15 +38,20 @@ export default function Table() {
               </tr>
             </thead>
             <tbody>
-              {
-                Object.values(planetData)
-                  .filter(({ name }) => name.includes(planetSearch))
+              {numberFilter
+                ? planetFiltered
                   .map((planet, index) => (
                     <tr key={ index }>
                       {Object.values(planet)
                         .map((item, ind) => <td key={ ind }>{item}</td>)}
                     </tr>))
-              }
+                : Object.values(planetData)
+                  .filter(({ name }) => name.includes(planetSearch))
+                  .map((planet, index) => (
+                    <tr key={ index }>
+                      {Object.values(planet)
+                        .map((item, ind) => <td key={ ind }>{item}</td>)}
+                    </tr>)) }
             </tbody>
           </table>
         )
