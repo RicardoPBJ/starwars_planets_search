@@ -6,30 +6,56 @@ import Select from './Select';
 
 const comparisonOptions = ['maior que', 'menor que', 'igual a'];
 export default function NumberFilter() {
-  const { planetData, setPlanetFiltered, setNumberFilter } = useContext(AppContext);
+  const {
+    planetData,
+    setPlanetFiltered,
+    setNumberFilter,
+    setFiltersList,
+    filtersList,
+    planetFiltered,
+  } = useContext(AppContext);
   const [comparison, setComparison] = useState('maior que');
   const [number, setNumber] = useState('0');
   const [column, setColumn] = useState('population');
 
   const handleFilter = (compare, value, columnItem) => {
-    setPlanetFiltered(
-      planetData.filter((planet) => {
-        switch (compare) {
-        case 'maior que':
-          return +planet[columnItem] > +value;
-        case 'menor que':
-          return +planet[columnItem] < +value;
-        case 'igual a':
-          return +planet[columnItem] === +value;
-        default:
-          return false;
-        }
-      }),
-    );
+    if (planetFiltered.length === 0) {
+      setPlanetFiltered(
+        planetData.filter((planet) => {
+          switch (compare) {
+          case 'maior que':
+            return +planet[columnItem] > +value;
+          case 'menor que':
+            return +planet[columnItem] < +value;
+          case 'igual a':
+            return +planet[columnItem] === +value;
+          default:
+            return false;
+          }
+        }),
+      );
+    } else {
+      setPlanetFiltered(
+        planetFiltered.filter((planet) => {
+          switch (compare) {
+          case 'maior que':
+            return +planet[columnItem] > +value;
+          case 'menor que':
+            return +planet[columnItem] < +value;
+          case 'igual a':
+            return +planet[columnItem] === +value;
+          default:
+            return false;
+          }
+        }),
+      );
+    }
   };
 
   const onNumberFilter = () => {
     handleFilter(comparison, number, column);
+    const actualFilter = `${column} ${comparison} ${number}`;
+    setFiltersList([...filtersList, actualFilter]);
     setNumberFilter(true);
   };
 

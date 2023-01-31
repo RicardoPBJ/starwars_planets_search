@@ -9,13 +9,14 @@ export default function Table() {
     planetSearch,
     planetFiltered,
     numberFilter,
+    filtersList,
   } = useContext(AppContext);
 
   useEffect(() => {
     makeFetch('https://swapi.dev/api/planets');
   }, []);
   console.log(planetFiltered);
-  console.log(planetData);
+  console.log(filtersList);
 
   return (
     <div>
@@ -40,6 +41,7 @@ export default function Table() {
             <tbody>
               {numberFilter
                 ? planetFiltered
+                  .filter(({ name }) => name.includes(planetSearch))
                   .map((planet, index) => (
                     <tr key={ index }>
                       {Object.values(planet)
