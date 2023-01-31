@@ -15,6 +15,7 @@ export default function Table() {
   useEffect(() => {
     makeFetch('https://swapi.dev/api/planets');
   }, []);
+
   console.log(planetFiltered);
   console.log(filtersList);
 

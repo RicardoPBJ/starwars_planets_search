@@ -3,6 +3,16 @@ import { useMemo, useState } from 'react';
 import AppContext from './AppContext';
 
 function AppProvider({ children }) {
+  const [optionsNumberFilter, setOptionsNumberFilter] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
+  const [optionsComparison, setOptionsComparison] = useState([
+    'maior que', 'menor que', 'igual a',
+  ]);
   const [filtersList, setFiltersList] = useState([]);
   const [numberFilter, setNumberFilter] = useState(false);
   const [planetFiltered, setPlanetFiltered] = useState([]);
@@ -28,6 +38,10 @@ function AppProvider({ children }) {
   };
 
   const values = useMemo(() => ({
+    setOptionsComparison,
+    optionsComparison,
+    setOptionsNumberFilter,
+    optionsNumberFilter,
     filtersList,
     setFiltersList,
     planetFiltered,
@@ -42,6 +56,7 @@ function AppProvider({ children }) {
     setPlanetSearch,
     planetData,
   }), [
+    optionsNumberFilter,
     planetSearch,
     planetData,
     isLoading,
@@ -49,6 +64,7 @@ function AppProvider({ children }) {
     numberFilter,
     planetFiltered,
     filtersList,
+    optionsComparison,
   ]);
 
   return (
@@ -59,7 +75,7 @@ function AppProvider({ children }) {
 }
 
 AppProvider.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.node,
 }.isRequired;
 
 export default AppProvider;

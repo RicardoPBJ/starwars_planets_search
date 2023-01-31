@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AppContext from '../context/AppContext';
 import Button from './Button';
 import Input from './Input';
@@ -13,6 +13,8 @@ export default function NumberFilter() {
     setFiltersList,
     filtersList,
     planetFiltered,
+    optionsNumberFilter,
+    setOptionsNumberFilter,
   } = useContext(AppContext);
   const [comparison, setComparison] = useState('maior que');
   const [number, setNumber] = useState('0');
@@ -36,28 +38,41 @@ export default function NumberFilter() {
       );
     } else {
       setPlanetFiltered(
-        planetFiltered.filter((planet) => {
-          switch (compare) {
-          case 'maior que':
-            return +planet[columnItem] > +value;
-          case 'menor que':
-            return +planet[columnItem] < +value;
-          case 'igual a':
-            return +planet[columnItem] === +value;
-          default:
-            return false;
-          }
-        }),
+        planetFiltered
+          .filter((planet) => {
+            switch (compare) {
+            case 'maior que':
+              return +planet[columnItem] > +value;
+            case 'menor que':
+              return +planet[columnItem] < +value;
+            case 'igual a':
+              return +planet[columnItem] === +value;
+            default:
+              return false;
+            }
+          }),
       );
     }
   };
 
-  const onNumberFilter = () => {
+  const onNumberFilter = ({ target: { value } }) => {
     handleFilter(comparison, number, column);
     const actualFilter = `${column} ${comparison} ${number}`;
     setFiltersList([...filtersList, actualFilter]);
     setNumberFilter(true);
+    if (optionsNumberFilter.includes(column)) {
+      setOptionsNumberFilter(
+        optionsNumberFilter.filter((option) => option !== column),
+      );
+      return;
+    }
+    setOptionsNumberFilter([...optionsNumberFilter, value]);
+    console.log(optionsNumberFilter);
   };
+
+  useEffect(() => {
+    setColumn(optionsNumberFilter[0]);
+  }, [optionsNumberFilter]);
 
   return (
     <form>
@@ -65,13 +80,7 @@ export default function NumberFilter() {
         name="column-filter"
         testId="column-filter"
         id="column-filter"
-        options={ [
-          'population',
-          'orbital_period',
-          'diameter',
-          'rotation_period',
-          'surface_water',
-        ] }
+        options={ optionsNumberFilter }
         handleSelect={ ({ target: { value } }) => setColumn(value) }
       />
       <Select
