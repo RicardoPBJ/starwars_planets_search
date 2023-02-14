@@ -29,10 +29,8 @@ export default function NumberFilter() {
             return +planet[columnItem] > +value;
           case 'menor que':
             return +planet[columnItem] < +value;
-          case 'igual a':
-            return +planet[columnItem] === +value;
           default:
-            return false;
+            return +planet[columnItem] === +value;
           }
         }),
       );
@@ -45,17 +43,15 @@ export default function NumberFilter() {
               return +planet[columnItem] > +value;
             case 'menor que':
               return +planet[columnItem] < +value;
-            case 'igual a':
-              return +planet[columnItem] === +value;
             default:
-              return false;
+              return +planet[columnItem] === +value;
             }
           }),
       );
     }
   };
 
-  const onNumberFilter = ({ target: { value } }) => {
+  const onNumberFilter = () => {
     handleFilter(comparison, number, column);
     const actualFilter = `${column} ${comparison} ${number}`;
     setFiltersList([...filtersList, actualFilter]);
@@ -64,10 +60,13 @@ export default function NumberFilter() {
       setOptionsNumberFilter(
         optionsNumberFilter.filter((option) => option !== column),
       );
-      return;
     }
-    setOptionsNumberFilter([...optionsNumberFilter, value]);
-    console.log(optionsNumberFilter);
+    // setOptionsNumberFilter([...optionsNumberFilter]);
+  };
+
+  const deleteAllFilters = () => {
+    setNumberFilter(false);
+    setFiltersList([]);
   };
 
   useEffect(() => {
@@ -104,6 +103,11 @@ export default function NumberFilter() {
         testId="button-filter"
         btnLabel="Filtrar"
         handleButton={ onNumberFilter }
+      />
+      <Button
+        testId="button-remove-filters"
+        btnLabel="Excluir filtros"
+        handleButton={ deleteAllFilters }
       />
     </form>
   );

@@ -3,6 +3,8 @@ import { useMemo, useState } from 'react';
 import AppContext from './AppContext';
 
 function AppProvider({ children }) {
+  const [sortOk, setSortOk] = useState(false);
+  const [sort, setSort] = useState({});
   const [optionsNumberFilter, setOptionsNumberFilter] = useState([
     'population',
     'orbital_period',
@@ -37,7 +39,12 @@ function AppProvider({ children }) {
     }
   };
 
+  console.log(planetData);
   const values = useMemo(() => ({
+    setSort,
+    setSortOk,
+    sortOk,
+    sort,
     setOptionsComparison,
     optionsComparison,
     setOptionsNumberFilter,
@@ -56,6 +63,10 @@ function AppProvider({ children }) {
     setPlanetSearch,
     planetData,
   }), [
+    setOptionsNumberFilter,
+    setPlanetFiltered,
+    sortOk,
+    sort,
     optionsNumberFilter,
     planetSearch,
     planetData,

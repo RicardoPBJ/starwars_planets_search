@@ -1,23 +1,58 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../context/AppContext';
 
 export default function Table() {
   const {
     planetData,
+    sort,
     isLoading,
     makeFetch,
     planetSearch,
     planetFiltered,
     numberFilter,
-    filtersList,
   } = useContext(AppContext);
+  const [planetArray, setPlanetArray] = useState([]);
+  useEffect(() => {
+    const atualPlanets = numberFilter ? planetFiltered : planetData;
+    setPlanetArray(atualPlanets);
+  }, [planetData, planetFiltered, numberFilter]);
 
   useEffect(() => {
     makeFetch('https://swapi.dev/api/planets');
   }, []);
 
-  console.log(planetFiltered);
-  console.log(filtersList);
+  useEffect(() => {
+    const { radios, sorts } = sort;
+    const newPlanetArray = planetArray.reduce((acc, curr) => {
+      if (curr[sorts] === 'unknown') {
+        acc.push(curr);
+      } else {
+        const index = acc.findIndex((item) => item[sorts] === 'unknown');
+        acc.splice(index, 0, curr);
+      }
+      return acc;
+    }, []);
+
+    if (sort.radios) {
+      switch (radios) {
+      case 'ASC': {
+        setPlanetArray(newPlanetArray
+          .sort((value1, value2) => value1[sorts] - value2[sorts]));
+        break;
+      }
+      case 'DESC': {
+        setPlanetArray(newPlanetArray
+          .sort((value1, value2) => value2[sorts] - value1[sorts]));
+        break;
+      }
+      default: break;
+      }
+    }
+
+    // }, [sortOk, numberFilter, planetData, sort, planetFiltered]);
+  }, [sort]);
+
+  console.log(planetArray);
 
   return (
     <div>
@@ -29,7 +64,7 @@ export default function Table() {
       {
         !!planetData.length
         && (
-          <table>
+          <table data-testid="table">
             <thead>
               <tr>
                 {
@@ -40,21 +75,19 @@ export default function Table() {
               </tr>
             </thead>
             <tbody>
-              {numberFilter
-                ? planetFiltered
-                  .filter(({ name }) => name.includes(planetSearch))
-                  .map((planet, index) => (
-                    <tr key={ index }>
-                      {Object.values(planet)
-                        .map((item, ind) => <td key={ ind }>{item}</td>)}
-                    </tr>))
-                : Object.values(planetData)
-                  .filter(({ name }) => name.includes(planetSearch))
-                  .map((planet, index) => (
-                    <tr key={ index }>
-                      {Object.values(planet)
-                        .map((item, ind) => <td key={ ind }>{item}</td>)}
-                    </tr>)) }
+              {planetArray
+                .filter(({ name }) => name.includes(planetSearch))
+                .map((planet, index) => (
+                  <tr key={ index }>
+                    {Object.entries(planet)
+                      .map((item, ind) => (
+                        <td
+                          key={ `${item[1]} ${ind}` }
+                          data-testid={ `planet-${item[0]}` }
+                        >
+                          {item[1]}
+                        </td>))}
+                  </tr>)) }
             </tbody>
           </table>
         )

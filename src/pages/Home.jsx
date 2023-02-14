@@ -4,6 +4,7 @@ import Input from '../components/Input';
 import AppContext from '../context/AppContext';
 import NumberFilter from '../components/NumberFilter';
 import NumberFiltersList from '../components/NumberFiltersList';
+import SortFilter from '../components/SortFilter';
 
 export default function Home() {
   const { setPlanetSearch, filtersList, planetSearch } = useContext(AppContext);
@@ -28,6 +29,7 @@ export default function Home() {
         && <NumberFiltersList />
       }
       <NumberFilter />
+      <SortFilter />
       <Table />
     </>
   );
