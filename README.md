@@ -1,10 +1,31 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Star Wars Planets Search
+
+# Contexto
+Este projeto trata-se de uma lista com filtros de planetas do universo de Star Wars
+
+## Técnologias usadas
+
+Front-end:
+> Desenvolvido usando: React, ContextAPI, CSS3, HTML5, ES6
+
+## Instalando Dependências
+
+```bash
+npm install
+``` 
+## Executando aplicação
+
+  ```
+    cd src/ && npm start
+  ```
+
+## Executando Testes
+
+* Para rodar todos os testes:
+
+  ```
+    npm test
+  ```
+
+## Observações
+O objetivo deste projeto é a pratica do front-end utilizando React Hooks e ContextAPI portanto não tem back-end.
