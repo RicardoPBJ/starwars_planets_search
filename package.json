@@ -10,6 +10,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13",
     "bootstrap": "^5.3.2",
+    "gh-pages": "^6.1.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,10 +21,13 @@
       "!src/index.js"
     ]
   },
+  "homepage": "https://RicardoPBJ.github.io/starwars-planets-search",
   "scripts": {
     "cy": "env CY_CLI=true cypress run",
     "cy:open": "cypress open --e2e --browser chrome",
     "start": "env ESLINT_NO_DEV_ERRORS=true react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test-coverage": "react-scripts test --coverage --watchAll=false",
