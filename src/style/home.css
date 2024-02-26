@@ -110,13 +110,6 @@
   /* 128.571% */
 }
 
-.line {
-  height: 100px;
-  width: 1px;
-  border-top-width: 1px;
-  border-top-color: red;
-}
-
 .delete-btn {
   color: red;
   border-color: red;
