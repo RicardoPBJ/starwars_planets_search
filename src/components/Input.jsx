@@ -9,9 +9,11 @@ function Input({
   handleInput,
   placeholder,
   value,
+  labelClass,
+  inputClass,
 }) {
   return (
-    <label htmlFor={ name }>
+    <label htmlFor={ name } className={ labelClass }>
       {labelName}
       <input
         type={ type }
@@ -21,6 +23,7 @@ function Input({
         data-testid={ testId }
         onChange={ handleInput }
         placeholder={ placeholder }
+        className={ inputClass }
       />
     </label>
   );
@@ -35,6 +38,8 @@ Input.propTypes = {
   testId: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   handleInput: PropTypes.func.isRequired,
+  labelClass: PropTypes.string,
+  inputClass: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -42,6 +47,8 @@ Input.defaultProps = {
   id: '',
   placeholder: '',
   labelName: '',
+  labelClass: '',
+  inputClass: '',
 };
 
 export default Input;

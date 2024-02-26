@@ -36,17 +36,16 @@ export default function NumberFilter() {
       );
     } else {
       setPlanetFiltered(
-        planetFiltered
-          .filter((planet) => {
-            switch (compare) {
-            case 'maior que':
-              return +planet[columnItem] > +value;
-            case 'menor que':
-              return +planet[columnItem] < +value;
-            default:
-              return +planet[columnItem] === +value;
-            }
-          }),
+        planetFiltered.filter((planet) => {
+          switch (compare) {
+          case 'maior que':
+            return +planet[columnItem] > +value;
+          case 'menor que':
+            return +planet[columnItem] < +value;
+          default:
+            return +planet[columnItem] === +value;
+          }
+        }),
       );
     }
   };
@@ -61,7 +60,6 @@ export default function NumberFilter() {
         optionsNumberFilter.filter((option) => option !== column),
       );
     }
-    // setOptionsNumberFilter([...optionsNumberFilter]);
   };
 
   const deleteAllFilters = () => {
@@ -74,13 +72,16 @@ export default function NumberFilter() {
   }, [optionsNumberFilter]);
 
   return (
-    <form>
+    <div className="d-flex flex-row align-items-center justify-content-between">
       <Select
         name="column-filter"
         testId="column-filter"
         id="column-filter"
         options={ optionsNumberFilter }
         handleSelect={ ({ target: { value } }) => setColumn(value) }
+        labelName="Coluna"
+        selectClass="filter-select"
+        labelClass="label-select d-flex flex-column align-items-start "
       />
       <Select
         name="comparison-filter"
@@ -88,6 +89,9 @@ export default function NumberFilter() {
         id="comparison-filter"
         options={ comparisonOptions }
         handleSelect={ ({ target: { value } }) => setComparison(value) }
+        labelName="Operador"
+        selectClass="filter-select"
+        labelClass="label-select d-flex flex-column align-items-start "
       />
       <Input
         id="value-filter"
@@ -98,17 +102,21 @@ export default function NumberFilter() {
         testId="value-filter"
         placeholder=""
         handleInput={ ({ target: { value } }) => setNumber(value) }
+        labelClass=""
+        inputClass=""
       />
       <Button
         testId="button-filter"
         btnLabel="Filtrar"
         handleButton={ onNumberFilter }
+        btnClass="filter-btn btn-label"
       />
       <Button
         testId="button-remove-filters"
         btnLabel="Excluir filtros"
         handleButton={ deleteAllFilters }
+        btnClass=""
       />
-    </form>
+    </div>
   );
 }

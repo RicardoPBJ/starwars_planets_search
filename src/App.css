@@ -1,14 +1,38 @@
 .App {
   text-align: center;
 }
+table {
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+body {
+  background-image: url("fundo-star-wars.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+}
+
+.home-page {
+  width: 1212px;
+  height: 750px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid #fff;
+  width: 90vw;
+  height: 750px;
+  padding: 50px;
+}
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-@media ( prefers-reduced-motion : no-preference ) {
-
+@media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
@@ -30,7 +54,6 @@
 }
 
 @keyframes App-logo-spin {
-
   from {
     transform: rotate(0deg);
   }

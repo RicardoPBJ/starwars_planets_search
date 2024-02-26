@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import '../style/home.css';
 import Table from '../components/Table';
 import Input from '../components/Input';
 import AppContext from '../context/AppContext';
@@ -14,23 +15,27 @@ export default function Home() {
   };
 
   return (
-    <>
-      <Input
-        name="text"
-        labelName="Pesquisar Planetas"
-        value={ planetSearch }
-        type="text"
-        testId="name-filter"
-        handleInput={ handleChange }
-        placeholder="Search"
-      />
-      {
-        filtersList.length > 0
-        && <NumberFiltersList />
-      }
-      <NumberFilter />
-      <SortFilter />
+    <div className="home-page">
+      <hr className="line" />
+      <div className="filters">
+        <Input
+          name="text"
+          labelName=""
+          value={ planetSearch }
+          type="text"
+          testId="name-filter"
+          handleInput={ handleChange }
+          placeholder=""
+          inputClass="filters-search-input"
+          labelClass=""
+        />
+        {filtersList.length > 0 && <NumberFiltersList />}
+        <div>
+          <NumberFilter />
+          <SortFilter />
+        </div>
+      </div>
       <Table />
-    </>
+    </div>
   );
 }
