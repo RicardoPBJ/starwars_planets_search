@@ -16,7 +16,6 @@ export default function Home() {
 
   return (
     <div className="home-page">
-      <hr className="line" />
       <div className="filters">
         <Input
           name="text"
@@ -30,7 +29,7 @@ export default function Home() {
           labelClass=""
         />
         {filtersList.length > 0 && <NumberFiltersList />}
-        <div>
+        <div className="home-filters">
           <NumberFilter />
           <SortFilter />
         </div>

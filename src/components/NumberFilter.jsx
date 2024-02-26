@@ -72,7 +72,7 @@ export default function NumberFilter() {
   }, [optionsNumberFilter]);
 
   return (
-    <div className="d-flex flex-row align-items-center justify-content-between">
+    <div className="number-filter">
       <Select
         name="column-filter"
         testId="column-filter"
@@ -115,7 +115,7 @@ export default function NumberFilter() {
         testId="button-remove-filters"
         btnLabel="Excluir filtros"
         handleButton={ deleteAllFilters }
-        btnClass=""
+        btnClass="delete-btn"
       />
     </div>
   );
