@@ -1,0 +1,131 @@
+.filters {
+  width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.filters > label,
+.filters > input {
+  padding: 15px 10px;
+}
+
+.filters-search-input {
+  border-radius: 5px;
+  border: 1px solid #fff;
+  flex-shrink: 0;
+  width: 671px;
+  background-color: transparent;
+  background-image: url(/🦆\ icon\ _search_.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.filters > div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex: 1;
+  padding: 50px;
+}
+
+.filters > div > div input {
+  color: white;
+  padding: 10px;
+  background: transparent;
+  border: 2px solid #fff;
+  width: 91px;
+  border-radius: 5px;
+}
+
+.filter-btn {
+  width: 98px;
+  height: 85px;
+  flex-shrink: 0;
+  border-width: 1px;
+  border-color: #fae60a;
+  border-radius: 6px;
+  background-color: transparent;
+}
+
+.btn-label {
+  color: #fae60a;
+  text-align: center;
+  font-family: Epilogue;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.label-select {
+  color: #aeaeae;
+  font-family: Epilogue;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.filter-select {
+  background: transparent;
+  border: transparent;
+  border-bottom: 2px solid white;
+  color: #fff;
+  font-family: Epilogue;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.sort-label {
+  color: #fff;
+  font-family: Epilogue;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.table-words {
+  color: #aeaeae;
+  font-family: Epilogue;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+  border-bottom: 1px solid #828282;
+}
+
+.table-categories {
+  border: 1px solid #000;
+  background: #2e3035;
+  color: #fff;
+  font-family: Epilogue;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  /* 128.571% */
+}
+
+.line {
+  height: 100px;
+  width: 1px;
+  border-top-width: 1px;
+  border-top-color: red;
+}
+
+.delete-btn {
+  color: red;
+  border-color: red;
+  border-radius: 6px;
+  background-color: transparent;
+  font-family: Epilogue;
+}
+
+.number-filter {
+  display: flex;
+  align-items: center;
+}

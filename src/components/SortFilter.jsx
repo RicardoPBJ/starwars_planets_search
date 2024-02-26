@@ -30,7 +30,7 @@ export default function SortFilter() {
   };
 
   return (
-    <div>
+    <div className="d-flex align-items-center justify-content-around">
       <Select
         name="sort-select"
         value={ sorts }
@@ -42,31 +42,40 @@ export default function SortFilter() {
           'rotation_period',
           'surface_water'] }
         handleSelect={ handleChange }
-        labelName="sort"
+        labelName="Ordenar"
+        selectClass="filter-select"
+        labelClass="label-select d-flex flex-column align-items-start "
       />
-      <Input
-        name="radio"
-        labelName="ASC"
-        value="ASC"
-        type="radio"
-        testId="column-sort-input-asc"
-        handleInput={ handleRadio }
-        placeholder="Search"
-      />
-      <Input
-        name="radio"
-        labelName="DESC"
-        value="DESC"
-        type="radio"
-        testId="column-sort-input-desc"
-        handleInput={ handleRadio }
-        placeholder="Search"
-      />
+      <div className="d-flex flex-column">
+        <Input
+          name="radio"
+          labelName="Ascendente"
+          value="ASC"
+          type="radio"
+          testId="column-sort-input-asc"
+          handleInput={ handleRadio }
+          placeholder="Search"
+          inputClass="color-yellow"
+          labelClass="sort-label"
+        />
+        <Input
+          name="radio"
+          labelName="Descendente"
+          value="DESC"
+          type="radio"
+          testId="column-sort-input-desc"
+          handleInput={ handleRadio }
+          placeholder="Search"
+          labelClass="sort-label"
+          inputClass="color-yellow"
+        />
+      </div>
       <Button
         isDisabled={ radios.clicked }
         testId="column-sort-button"
-        btnLabel="alo"
+        btnLabel="Ordenar"
         handleButton={ handleButton }
+        btnClass="filter-btn btn-label"
       />
     </div>
   );

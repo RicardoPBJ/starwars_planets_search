@@ -56,6 +56,7 @@ export default function NumberFiltersList() {
                 testId={ `button${index}` }
                 btnLabel="excluir"
                 handleButton={ () => deleteFilter(item) }
+                btnClass=""
               />
             </div>))
       }

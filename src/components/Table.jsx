@@ -64,12 +64,12 @@ export default function Table() {
       {
         !!planetData.length
         && (
-          <table data-testid="table">
+          <table data-testid="table" className="">
             <thead>
               <tr>
                 {
                   Object.keys(planetData[0]).map((value) => (
-                    <th key={ value }>{value}</th>
+                    <th key={ value } className="table-categories">{value}</th>
                   ))
                 }
               </tr>
@@ -78,12 +78,13 @@ export default function Table() {
               {planetArray
                 .filter(({ name }) => name.includes(planetSearch))
                 .map((planet, index) => (
-                  <tr key={ index }>
+                  <tr key={ index } className="">
                     {Object.entries(planet)
                       .map((item, ind) => (
                         <td
                           key={ `${item[1]} ${ind}` }
                           data-testid={ `planet-${item[0]}` }
+                          className="table-words"
                         >
                           {item[1]}
                         </td>))}
